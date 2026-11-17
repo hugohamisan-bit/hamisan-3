@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tebak Plesetan Offline</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Menghubungkan ke Manifest agar bisa di-install -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#6c5ce7">
+</head>
+<body>
+
+  <div class="app-container">
+    <header>
+      <h1>🤪 Tebak Plesetan</h1>
+      <div class="score-board">Skor: <span id="skor">0</span></div>
+    </header>
+
+    <main id="game-card">
+      <p class="label">Pertanyaan:</p>
+      <h2 id="pertanyaan">Memuat soal...</h2>
+      
+      <input type="text" id="input-jawaban" placeholder="Ketik jawabanmu di sini..." autocomplete="off">
+      
+      <div class="button-group">
+        <button id="btn-jawab" class="btn primary">Jawab!</button>
+        <button id="btn-lewati" class="btn secondary">Nyerah / Lewati</button>
+      </div>
+
+      <p id="feedback" class="feedback"></p>
+    </main>
+
+    <footer>
+      <p>100% Offline Mode • Karya Anak SMA</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+  
+  <!-- Mendaftarkan Service Worker untuk mode Offline -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js')
+        .then(() => console.log('Mode Offline Aktif!'))
+        .catch((err) => console.log('Gagal daftar SW:', err));
+    }
+  </script>
+</body>
+</html>
